@@ -9,7 +9,7 @@ export const waitTimeText: WaitTimeText = {
     heading: "Reception Wait Time",
     subheadings: ["Reception", "Wait", "Time"],
   },
-  m: {
+  mn: {
     heading: "Eye Exam Wait Time",
     subheadings: ["Eye Exam", "Wait", "Time"],
   },

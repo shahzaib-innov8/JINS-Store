@@ -1,11 +1,14 @@
 import { ReactNode } from "react";
-import { calledList } from "./callingTypes";
+import { calledList, CallingNumber } from "./callingTypes";
 import { waitingList } from "./waitingTypes";
 
-export interface QueueDisplayProps {
+export interface QueuesData {
+  callingNumber?: CallingNumber;
+  countryCode?: string;
   calledList: calledList;
   waitingList: waitingList;
 }
+
 export interface containerProps {
     style: string
     children: ReactNode

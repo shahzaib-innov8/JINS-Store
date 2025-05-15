@@ -1,12 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { calledList, CallingNumber } from "./callingTypes";
+import { calledList } from "./callingTypes";
 import { waitingList, WaitTimeRange } from "./waitingTypes";
-
-export interface QueuesData {
-  callingNumber?: CallingNumber;
-  calledList: calledList;
-  waitingList: waitingList;
-}
+import { QueuesData } from "./queueTypes";
 
 export interface WebSocketResponse {
   waitTimeRange: WaitTimeRange;

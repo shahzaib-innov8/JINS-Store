@@ -7,6 +7,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { defaultContext } from "../constants/webSocket";
 import { isValidCountryCode, getTime, isMissingKeyInJSON } from "../utils";
+import { filterQueueData } from "../utils/queueData";
 
 const WebSocketContext = createContext<WebSocketContextProps>(defaultContext);
 
@@ -18,14 +19,18 @@ const WebSocketProvider = ({ children }: WebSocketProviderProps) => {
   const [callingTitleClass, setCallingTitleClass] = useState("");
   const [callingNumberClass, setCallingNumberClass] = useState("");
   const [currentTime, setCurrentTime] = useState("");
-  const calledList = data?.queuesData?.calledList ?? [];
-  const waitingList = data?.queuesData?.waitingList ?? [];
   const [searchParams] = useSearchParams();
   const storeId = searchParams.get("storeid") || "";
-  const countryCode = searchParams.get("countrycode") || "";
+  const countryCode = (searchParams.get("countrycode") || "").toLowerCase();
+  const queuesData = {
+    countryCode,
+    calledList: data?.queuesData?.calledList ?? [],
+    waitingList: data?.queuesData?.waitingList ?? [],
+  };
+  const { calledList, waitingList } = filterQueueData({ ...queuesData });
   const WS_URL = `${
     import.meta.env.VITE_BFF_ENDPOINT
-  }/ws?storeId=${storeId}&countrycode=${countryCode}`;
+  }/ws?storeid=${storeId}&countrycode=${countryCode}`;
 
   const handleWebSocketMessage = (event: MessageEvent) => {
     try {

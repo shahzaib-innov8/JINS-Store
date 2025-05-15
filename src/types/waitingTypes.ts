@@ -1,4 +1,4 @@
-import { calledList, CallingNumber } from "./callingTypes";
+import { CallingNumber } from "./callingTypes";
 
 export interface WaitTimeRange {
   earliest: number | String;
@@ -6,12 +6,6 @@ export interface WaitTimeRange {
 }
 
 export type waitingList = CallingNumber[];
-
-export interface WaitingDisplayProps {
-  waitTimeRange: WaitTimeRange;
-  calledList: calledList;
-  waitingList: waitingList;
-}
 
 export type WaitTimeInfo = {
   heading: string;
